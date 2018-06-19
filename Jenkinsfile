@@ -6,7 +6,7 @@ pipeline {
                echo 'This is a minimal pipeline.' 
             }
         }
-    }
+  
 pipeline {
     agent any
     tools { 
@@ -29,4 +29,5 @@ pipeline {
                 echo 'This is a minimal pipeline.'
             }
         }
-    
+    }
+    }
