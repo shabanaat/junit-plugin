@@ -1,15 +1,18 @@
+
 pipeline {
-    agent any
+    agent {
+        node { label 'my-docker' }
+    }
     stages {
-        stage('Build') {
-            when {
-                allOf {
-                    not { branch 'master' }
-                    environment name: 'JOB_NAME', value: 'Foo'
+        stage("Build") {
+            agent {
+                docker {
+                reuseNode true
+                image 'maven:3.5.0-jdk-8'
                 }
             }
             steps {
-                echo 'Building'
+                sh 'mvn install'
             }
         }
     }
