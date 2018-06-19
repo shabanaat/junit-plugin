@@ -1,19 +1,14 @@
 
 pipeline {
-    agent{
-       node 
+    agent any
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE        = 'sqlite'
     }
-    
     stages {
-        stage("Build") {
-            agent {
-                docker {
-                reuseNode true
-                image 'maven:3.5.0-jdk-8'
-                }
-            }
+        stage('Build') {
             steps {
-                sh 'mvn install'
+                sh 'printenv’
             }
         }
     }
