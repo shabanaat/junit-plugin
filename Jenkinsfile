@@ -1,12 +1,16 @@
-
 pipeline {
     agent any
     stages {
-        stage('Deploy') {
-            steps {
-                timeout(time: 3, unit: 'MINUTES') {
-                    retry(5) {
-                        powershell '.\flakey-deploy.ps1'
+        stage('Browser Tests') {
+            parallel {
+                stage('Chrome') {
+                    steps {
+                        echo "Chrome Tests"
+                    }
+                }
+                stage('Firefox') {
+                    steps {
+                        echo "Firefox Tests"
                     }
                 }
             }
