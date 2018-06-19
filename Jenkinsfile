@@ -1,19 +1,14 @@
+
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
         stage('Deploy') {
             steps {
-                echo 'Deploying'
+                timeout(time: 3, unit: 'MINUTES') {
+                    retry(5) {
+                        powershell '.\flakey-deploy.ps1'
+                    }
+                }
             }
         }
     }
