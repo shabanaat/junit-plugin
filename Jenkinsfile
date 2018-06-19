@@ -1,18 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Browser Tests') {
-            parallel {
-                stage('Chrome') {
-                    steps {
-                        echo "Chrome Tests"
-                    }
+        stage('Build') {
+            when {
+                allOf {
+                    not { branch 'master' }
+                    environment name: 'JOB_NAME', value: 'Foo'
                 }
-                stage('Firefox') {
-                    steps {
-                        echo "Firefox Tests"
-                    }
-                }
+            }
+            steps {
+                echo 'Building'
             }
         }
     }
