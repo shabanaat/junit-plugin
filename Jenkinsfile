@@ -6,6 +6,7 @@ pipeline {
                echo 'This is a minimal pipeline.' 
             }
         }
+		}
   
 pipeline {
     agent any
@@ -29,5 +30,6 @@ pipeline {
                 echo 'This is a minimal pipeline.'
             }
         }
+    
     }
-    }
+	}
